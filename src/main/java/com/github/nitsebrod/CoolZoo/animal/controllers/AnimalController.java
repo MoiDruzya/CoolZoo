@@ -2,30 +2,37 @@ package com.github.nitsebrod.CoolZoo.animal.controllers;
 
 import com.github.nitsebrod.CoolZoo.animal.api.AnimalDto;
 import com.github.nitsebrod.CoolZoo.animal.services.AnimalService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/lion")
+@RequestMapping("/animal")
+@RequiredArgsConstructor
 public class AnimalController {
+
     @Autowired
     private final AnimalService animalService;
 
-    //todo альтернативный способ - @RequiredArgsConstructor из библиотеки @Lombok. Тогда наши поля будут автоматически на этапе компиляции
-    // добавляться в конструктор
-    public AnimalController(AnimalService animalService) {
-        this.animalService = animalService;
+    @GetMapping("/{gender}")
+    public AnimalDto getAnimalByGender(@PathVariable String gender) {
+        return animalService.getAnimalByGender(gender);
     }
 
-//    @GetMapping("/name")
-//    public Lion getLionByName(@RequestBody Lion lion) {
-//        System.out.println("getLionByName otrabotal");
-//        return lion;
-//    }
-
-    @GetMapping("/{id}")
-    public AnimalDto getLionById(@PathVariable Long id) {
-        System.out.println("getLionByName otrabotal");
-        return animalService.getAnimalById(id);
+    @GetMapping("/{type}")
+    public AnimalDto getAnimalByType(@PathVariable String type) {
+        return animalService.getAnimalByType(type);
     }
+
+    @GetMapping("/all")
+    public Page<AnimalDto> getAllAnimals(@PathVariable Pageable pageable) {
+        return animalService.getAllAnimals(pageable);
+    }
+
+
 }
