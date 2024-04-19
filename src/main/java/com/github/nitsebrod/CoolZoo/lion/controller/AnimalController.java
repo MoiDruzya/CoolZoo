@@ -1,21 +1,20 @@
 package com.github.nitsebrod.CoolZoo.lion.controller;
 
-import com.github.nitsebrod.CoolZoo.lion.repository.model.LionDto;
-import com.github.nitsebrod.CoolZoo.lion.service.LionService;
-import lombok.RequiredArgsConstructor;
+import com.github.nitsebrod.CoolZoo.lion.repository.model.AnimalDto;
+import com.github.nitsebrod.CoolZoo.lion.service.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/lion")
-public class LionController {
+public class AnimalController {
     @Autowired
-    private final LionService lionService;
+    private final AnimalService animalService;
 
     //todo альтернативный способ - @RequiredArgsConstructor из библиотеки @Lombok. Тогда наши поля будут автоматически на этапе компиляции
     // добавляться в конструктор
-    public LionController(LionService lionService) {
-        this.lionService = lionService;
+    public AnimalController(AnimalService animalService) {
+        this.animalService = animalService;
     }
 
 //    @GetMapping("/name")
@@ -25,8 +24,8 @@ public class LionController {
 //    }
 
     @GetMapping("/{id}")
-    public LionDto getLionById(@PathVariable Long id) {
+    public AnimalDto getLionById(@PathVariable Long id) {
         System.out.println("getLionByName otrabotal");
-        return lionService.getLionById(id);
+        return animalService.getAnimalById(id);
     }
 }

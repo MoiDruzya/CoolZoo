@@ -8,7 +8,11 @@ import lombok.Data;
 @AllArgsConstructor
 @Builder
 //todo Класс который мы будем передаватть по сети
-public class LionDto {
+public class AnimalDto {
     private Long id;
     private String name;
+    private String description;
+    private Integer age;
+    private String gender;
+    private String type;
 }
