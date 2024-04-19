@@ -1,7 +1,7 @@
-package com.github.nitsebrod.CoolZoo.lion.controller;
+package com.github.nitsebrod.CoolZoo.animal.controllers;
 
-import com.github.nitsebrod.CoolZoo.lion.repository.model.AnimalDto;
-import com.github.nitsebrod.CoolZoo.lion.service.AnimalService;
+import com.github.nitsebrod.CoolZoo.animal.api.AnimalDto;
+import com.github.nitsebrod.CoolZoo.animal.services.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

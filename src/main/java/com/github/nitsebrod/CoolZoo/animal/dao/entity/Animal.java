@@ -1,18 +1,17 @@
-package com.github.nitsebrod.CoolZoo.lion.repository.model;
+package com.github.nitsebrod.CoolZoo.animal.dao.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 
-//todo Класс, в который мы будем мапить entity из базы данных
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 @Builder
 @Entity
 @Table(name = "Animal")
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,

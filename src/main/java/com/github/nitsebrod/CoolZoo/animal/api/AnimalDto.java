@@ -1,4 +1,4 @@
-package com.github.nitsebrod.CoolZoo.lion.repository.model;
+package com.github.nitsebrod.CoolZoo.animal.api;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

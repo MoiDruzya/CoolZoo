@@ -1,9 +1,9 @@
-package com.github.nitsebrod.CoolZoo.lion.service.impl;
+package com.github.nitsebrod.CoolZoo.animal.services.impl;
 
-import com.github.nitsebrod.CoolZoo.lion.repository.AnimalRepository;
-import com.github.nitsebrod.CoolZoo.lion.repository.model.Animal;
-import com.github.nitsebrod.CoolZoo.lion.repository.model.AnimalDto;
-import com.github.nitsebrod.CoolZoo.lion.service.AnimalService;
+import com.github.nitsebrod.CoolZoo.animal.dao.AnimalRepository;
+import com.github.nitsebrod.CoolZoo.animal.dao.entity.Animal;
+import com.github.nitsebrod.CoolZoo.animal.api.AnimalDto;
+import com.github.nitsebrod.CoolZoo.animal.services.AnimalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,9 +12,10 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AnimalServiceImpl implements AnimalService {
 
-    //todo инжектнуть бин репозитория в конструктор
     @Autowired
     private final AnimalRepository animalRepository;
+
+
 
     @Override
     public AnimalDto getAnimalById(Long id) {

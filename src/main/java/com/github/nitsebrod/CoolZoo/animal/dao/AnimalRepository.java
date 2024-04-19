@@ -1,6 +1,6 @@
-package com.github.nitsebrod.CoolZoo.lion.repository;
+package com.github.nitsebrod.CoolZoo.animal.dao;
 
-import com.github.nitsebrod.CoolZoo.lion.repository.model.Animal;
+import com.github.nitsebrod.CoolZoo.animal.dao.entity.Animal;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 

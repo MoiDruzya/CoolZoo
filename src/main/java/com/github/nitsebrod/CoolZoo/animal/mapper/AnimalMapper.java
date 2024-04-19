@@ -1,7 +1,7 @@
-package com.github.nitsebrod.CoolZoo.lion.mapper;
+package com.github.nitsebrod.CoolZoo.animal.mapper;
 
-import com.github.nitsebrod.CoolZoo.lion.repository.model.Animal;
-import com.github.nitsebrod.CoolZoo.lion.repository.model.AnimalDto;
+import com.github.nitsebrod.CoolZoo.animal.dao.entity.Animal;
+import com.github.nitsebrod.CoolZoo.animal.api.AnimalDto;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
