@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -49,4 +50,29 @@ public class AnimalServiceImpl implements AnimalService {
         return animalMapper.toDto(animal);
     }
 
+    @Override
+    public AnimalDto saveNewAnimal(AnimalDto animalDto) {
+        Animal entity = animalMapper.toEntity(animalDto);
+        Animal save = animalRepository.save(entity);
+        return animalMapper.toDto(save);
+    }
+
+    @Override
+    public void deleteAnimalById(Long animalId) {
+        animalRepository.deleteById(animalId);
+    }
+
+    //todo потом возвращать Optional<AnimalDto> и посмотреть че кого
+    @Override
+    public AnimalDto updateAnimalById(Animal animal) throws IllegalArgumentException {
+        Optional<Animal> animalOpt = animalRepository.findById(animal.getId());
+        AnimalDto updatedAnimalDto;
+        if (animalOpt.isEmpty()) {
+            throw new IllegalArgumentException("huyno");
+        } else {
+            Animal entityToSafe = animalRepository.save(animal);
+            updatedAnimalDto = animalMapper.toDto(entityToSafe);
+        }
+        return updatedAnimalDto;
+    }
 }

@@ -6,13 +6,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/animal")
+@RequestMapping("/animals")
 @RequiredArgsConstructor
 public class AnimalController {
 
@@ -34,5 +31,19 @@ public class AnimalController {
         return animalService.getAllAnimals(pageable);
     }
 
+    @PostMapping("/")
+    public AnimalDto saveNewAnimal(@RequestBody AnimalDto animal) {
+        return animalService.saveNewAnimal(animal);
+    }
+
+    @DeleteMapping("/{animalId}")
+    public void deleteAnimalById(@PathVariable Long animalId) {
+        animalService.deleteAnimalById(animalId);
+    }
+
+    @PutMapping("/{animalId}")
+    public AnimalDto updateAnimal(@PathVariable AnimalDto animal) {
+        return animalService.saveNewAnimal(animal);
+    }
 
 }

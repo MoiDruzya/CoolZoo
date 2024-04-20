@@ -11,7 +11,6 @@ import lombok.*;
 @Table(name = "Animal")
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
