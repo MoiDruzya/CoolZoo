@@ -8,7 +8,7 @@ import lombok.*;
 @ToString
 @Builder
 @Entity
-@Table(name = "Animal")
+@Table(name = "animal")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Animal {
