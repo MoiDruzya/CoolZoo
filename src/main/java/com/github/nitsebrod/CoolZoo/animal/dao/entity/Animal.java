@@ -1,16 +1,18 @@
 package com.github.nitsebrod.CoolZoo.animal.dao.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
-@ToString
-@Builder
+
+@Data
 @Entity
-@Table(name = "animal")
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "animal")
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,

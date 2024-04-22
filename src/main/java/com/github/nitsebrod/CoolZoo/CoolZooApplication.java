@@ -1,13 +1,14 @@
 package com.github.nitsebrod.CoolZoo;
 
-import com.github.nitsebrod.CoolZoo.animal.dao.AnimalRepository;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@EnableJpaRepositories(value = "com.github.nitsebrod.CoolZoo")
-//@EnableJpaRepositories(repositoryBaseClass = AnimalRepository.class)
+
+
+@EnableJpaRepositories(basePackages = "com.github.nitsebrod.CoolZoo", entityManagerFactoryRef = "sessionFactory")
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
 public class CoolZooApplication {
 
