@@ -10,7 +10,7 @@ public interface AnimalController {
 
     @ApiOperation(value = "Получение животного по типу")
 //    @GetMapping(value = "/{animal_type}")
-    public AnimalDto getAnimalByGender(String gender );
+    public AnimalDto getAnimalByGender(String gender);
 
     @ApiOperation(value = "Получение животного по типу")
     @GetMapping(value = "/{animal_type}")

@@ -4,8 +4,6 @@ import com.github.nitsebrod.CoolZoo.animal.api.AnimalDto;
 import com.github.nitsebrod.CoolZoo.animal.dao.AnimalRepository;
 import com.github.nitsebrod.CoolZoo.animal.dao.entity.Animal;
 import com.github.nitsebrod.CoolZoo.animal.mapper.AnimalMapper;
-import jakarta.persistence.EntityManagerFactory;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -16,36 +14,31 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-
 @Service
-@RequiredArgsConstructor
 public class AnimalServiceImpl {
 
-    @Autowired
     private final AnimalRepository animalRepository;
-
-    @Autowired
     private final AnimalMapper animalMapper;
 
     @Autowired
-    private final EntityManagerFactory entityManagerFactory;
-
+    public AnimalServiceImpl(AnimalRepository animalRepository, AnimalMapper animalMapper) {
+        this.animalRepository = animalRepository;
+        this.animalMapper = animalMapper;
+    }
 
     public AnimalDto getAnimalByType(String type) {
         Animal animal = animalRepository.findAnimalByType(type);
         return animalMapper.toDto(animal);
     }
 
-
     public Page<AnimalDto> getAllAnimals(Pageable pageable) {
-        Page<Animal> pageableAnimals = animalRepository.findAll(pageable);
+        List<Animal> pageableAnimals = animalRepository.findAll();
         List<AnimalDto> animalList = pageableAnimals
                 .stream()
                 .map(animalMapper::toDto)
                 .collect(Collectors.toList());
         return new PageImpl<>(animalList, pageable, 2);
     }
-
 
     public AnimalDto getAnimalByGender(String gender) {
         //todo заменить на вызов из репозитория
@@ -58,7 +51,6 @@ public class AnimalServiceImpl {
         Animal save = animalRepository.save(entity);
         return animalMapper.toDto(save);
     }
-
 
     public void deleteAnimalById(Long animalId) {
         animalRepository.deleteById(animalId);
