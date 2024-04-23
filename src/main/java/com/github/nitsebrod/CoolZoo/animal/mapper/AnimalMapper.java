@@ -1,14 +1,18 @@
 package com.github.nitsebrod.CoolZoo.animal.mapper;
 
-import com.github.nitsebrod.CoolZoo.animal.api.AnimalDto;
+import com.github.nitsebrod.CoolZoo.animal.api.RequestAnimalDto;
+import com.github.nitsebrod.CoolZoo.animal.api.ResponseAnimalDto;
 import com.github.nitsebrod.CoolZoo.animal.dao.entity.Animal;
+import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
-import org.springframework.context.annotation.Bean;
+import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring",injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface AnimalMapper {
 
-    AnimalDto toDto(Animal animal);
+    @Mapping(source = "id", target = "animalId")
+    ResponseAnimalDto toDto(Animal animal);
 
-    Animal toEntity(AnimalDto animalDto);
+    @Mapping(source = "animalId", target = "id")
+    Animal toEntity(RequestAnimalDto requestAnimalDto);
 }

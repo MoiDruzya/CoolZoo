@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @Builder
-public class AnimalDto {
-    private Long id;
+public class ResponseAnimalDto {
+    private Long animalId;
     private String name;
     private String description;
     private Integer age;

@@ -1,6 +1,7 @@
 package com.github.nitsebrod.CoolZoo.animal.controllers.impl;
 
-import com.github.nitsebrod.CoolZoo.animal.api.AnimalDto;
+import com.github.nitsebrod.CoolZoo.animal.api.RequestAnimalDto;
+import com.github.nitsebrod.CoolZoo.animal.api.ResponseAnimalDto;
 import com.github.nitsebrod.CoolZoo.animal.controllers.AnimalController;
 import com.github.nitsebrod.CoolZoo.animal.services.impl.AnimalServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,22 +22,22 @@ public class AnimalControllerImpl implements AnimalController {
     }
 
     @GetMapping("/{gender}")
-    public AnimalDto getAnimalByGender(@PathVariable String gender) {
+    public ResponseAnimalDto getAnimalByGender(@PathVariable String gender) {
         return animalServiceImpl.getAnimalByGender(gender);
     }
 
     @GetMapping("/{type}")
-    public AnimalDto getAnimalByType(@PathVariable String type) {
+    public ResponseAnimalDto getAnimalByType(@PathVariable String type) {
         return animalServiceImpl.getAnimalByType(type);
     }
 
     @GetMapping("/all")
-    public Page<AnimalDto> getAllAnimals(@PathVariable Pageable pageable) {
+    public Page<ResponseAnimalDto> getAllAnimals(@PathVariable Pageable pageable) {
         return animalServiceImpl.getAllAnimals(pageable);
     }
 
     @PostMapping("/")
-    public AnimalDto saveNewAnimal(@RequestBody AnimalDto animal) {
+    public ResponseAnimalDto saveNewAnimal(@RequestBody RequestAnimalDto animal) {
         return animalServiceImpl.saveNewAnimal(animal);
     }
 
@@ -46,7 +47,7 @@ public class AnimalControllerImpl implements AnimalController {
     }
 
     @PutMapping("/{animalId}")
-    public AnimalDto updateAnimal(@PathVariable AnimalDto animal) {
+    public ResponseAnimalDto updateAnimal(@PathVariable RequestAnimalDto animal) {
         return animalServiceImpl.saveNewAnimal(animal);
     }
 

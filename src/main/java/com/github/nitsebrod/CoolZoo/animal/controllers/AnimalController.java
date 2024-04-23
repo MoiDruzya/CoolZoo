@@ -1,6 +1,7 @@
 package com.github.nitsebrod.CoolZoo.animal.controllers;
 
-import com.github.nitsebrod.CoolZoo.animal.api.AnimalDto;
+import com.github.nitsebrod.CoolZoo.animal.api.RequestAnimalDto;
+import com.github.nitsebrod.CoolZoo.animal.api.ResponseAnimalDto;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,19 +11,19 @@ public interface AnimalController {
 
     @ApiOperation(value = "Получение животного по типу")
 //    @GetMapping(value = "/{animal_type}")
-    public AnimalDto getAnimalByGender(String gender);
+    public ResponseAnimalDto getAnimalByGender(String gender);
 
     @ApiOperation(value = "Получение животного по типу")
     @GetMapping(value = "/{animal_type}")
-    public AnimalDto getAnimalByType(String type);
+    public ResponseAnimalDto getAnimalByType(String type);
 
     @ApiOperation(value = "Получение животного по типу")
 //    @GetMapping(value = "/{animal_type}")
-    public Page<AnimalDto> getAllAnimals(Pageable pageable);
+    public Page<ResponseAnimalDto> getAllAnimals(Pageable pageable);
 
     @ApiOperation(value = "Получение животного по типу")
 //    @GetMapping(value = "/{animal_type}")
-    public AnimalDto saveNewAnimal(AnimalDto animal);
+    public ResponseAnimalDto saveNewAnimal(RequestAnimalDto animal);
 
     @ApiOperation(value = "Получение животного по типу")
 //    @GetMapping(value = "/{animal_type}")
@@ -30,5 +31,5 @@ public interface AnimalController {
 
     @ApiOperation(value = "Получение животного по типу")
 //    @GetMapping(value = "/{animal_type}")
-    public AnimalDto updateAnimal(AnimalDto animal);
+    public ResponseAnimalDto updateAnimal(RequestAnimalDto animal);
 }

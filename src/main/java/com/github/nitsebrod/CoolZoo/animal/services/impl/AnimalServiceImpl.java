@@ -1,6 +1,7 @@
 package com.github.nitsebrod.CoolZoo.animal.services.impl;
 
-import com.github.nitsebrod.CoolZoo.animal.api.AnimalDto;
+import com.github.nitsebrod.CoolZoo.animal.api.RequestAnimalDto;
+import com.github.nitsebrod.CoolZoo.animal.api.ResponseAnimalDto;
 import com.github.nitsebrod.CoolZoo.animal.dao.AnimalRepository;
 import com.github.nitsebrod.CoolZoo.animal.dao.entity.Animal;
 import com.github.nitsebrod.CoolZoo.animal.mapper.AnimalMapper;
@@ -26,28 +27,28 @@ public class AnimalServiceImpl {
         this.animalMapper = animalMapper;
     }
 
-    public AnimalDto getAnimalByType(String type) {
+    public ResponseAnimalDto getAnimalByType(String type) {
         Animal animal = animalRepository.findAnimalByType(type);
         return animalMapper.toDto(animal);
     }
 
-    public Page<AnimalDto> getAllAnimals(Pageable pageable) {
+    public Page<ResponseAnimalDto> getAllAnimals(Pageable pageable) {
         List<Animal> pageableAnimals = animalRepository.findAll();
-        List<AnimalDto> animalList = pageableAnimals
+        List<ResponseAnimalDto> animalList = pageableAnimals
                 .stream()
                 .map(animalMapper::toDto)
                 .collect(Collectors.toList());
         return new PageImpl<>(animalList, pageable, 2);
     }
 
-    public AnimalDto getAnimalByGender(String gender) {
+    public ResponseAnimalDto getAnimalByGender(String gender) {
         //todo заменить на вызов из репозитория
         Animal animal = animalRepository.findAnimalByGender(gender);
         return animalMapper.toDto(animal);
     }
 
-    public AnimalDto saveNewAnimal(AnimalDto animalDto) {
-        Animal entity = animalMapper.toEntity(animalDto);
+    public ResponseAnimalDto saveNewAnimal(RequestAnimalDto requestAnimalDto) {
+        Animal entity = animalMapper.toEntity(requestAnimalDto);
         Animal save = animalRepository.save(entity);
         return animalMapper.toDto(save);
     }
@@ -58,15 +59,15 @@ public class AnimalServiceImpl {
 
     //todo потом возвращать Optional<AnimalDto> и посмотреть че кого
 
-    public AnimalDto updateAnimalById(Animal animal) throws IllegalArgumentException {
+    public ResponseAnimalDto updateAnimalById(Animal animal) throws IllegalArgumentException {
         Optional<Animal> animalOpt = animalRepository.findById(animal.getId());
-        AnimalDto updatedAnimalDto;
+        ResponseAnimalDto updatedResponseAnimalDto;
         if (animalOpt.isEmpty()) {
             throw new IllegalArgumentException("huyno");
         } else {
             Animal entityToSafe = animalRepository.save(animal);
-            updatedAnimalDto = animalMapper.toDto(entityToSafe);
+            updatedResponseAnimalDto = animalMapper.toDto(entityToSafe);
         }
-        return updatedAnimalDto;
+        return updatedResponseAnimalDto;
     }
 }
