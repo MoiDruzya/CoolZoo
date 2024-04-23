@@ -6,13 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class ResponseAnimalDto {
+public class AnimalDto {
     private Long animalId;
-    private String name;
     private String description;
+    private String name;
     private Integer age;
     private String gender;
     private String type;

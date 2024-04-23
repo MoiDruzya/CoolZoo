@@ -1,7 +1,6 @@
 package com.github.nitsebrod.CoolZoo.animal.dao;
 
 import com.github.nitsebrod.CoolZoo.animal.dao.entity.Animal;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -15,7 +14,7 @@ public interface AnimalRepository extends CrudRepository<Animal, Long> {
     @Query(value = "SELECT * FROM animal WHERE gender = :gender", nativeQuery = true)
     Animal findAnimalByGender(@Param("gender") String gender);
 
-    @Query(value = "SELECT * FROM animal WHERE animalType = :animalType", nativeQuery = true)
+    @Query(value = "SELECT * FROM animal WHERE type = :animalType", nativeQuery = true)
     Animal findAnimalByType(@Param("animalType") String animalType);
 
 //    @Query(value = "INSERT INTO animal(id, name, description, age, gender, animal_type) " +

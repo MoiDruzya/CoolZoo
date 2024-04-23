@@ -1,17 +1,19 @@
-CREATE TABLE animal (
-  id BIGSERIAL PRIMARY KEY,
-  name varchar(255),
-  surname varchar(255),
-  description varchar(255),
-  age int;
-  gender varchar(255);
-  type varchar(255)
+CREATE SEQUENCE IF NOT EXISTS animal_id_seq;
+select nextval(animal_id_seq);
+select currval(animal_id_seq);
+
+CREATE TABLE IF NOT EXISTS animal
+(
+    id          BIGINT NOT NULl PRIMARY KEY
+        DEFAULT (nextval('animal_id_seq')),
+    description varchar(255),
+    name        varchar(255),
+    age         int,
+    gender      varchar(255),
+    type        varchar(255)
 );
 
-{
-	"name": "Lion",
-    "description":"Dobriy, myagkiy",
-    "age":"10",
-    "gender":"female",
-    "type":"Koshachyi"
-}
+-- INSERT INTO animal (id, name, description, age, gender, type)
+-- VALUES (1, 'paul', 'qwe', 1, 'male', 'papug'),
+--        (2, 'Leva', 'qwe', 2, 'male', 'krisa'),
+--        (3, 'Sutuliy', 'qwe', 1, 'male', 'sobaken');

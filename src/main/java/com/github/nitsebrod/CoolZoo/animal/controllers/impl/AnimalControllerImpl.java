@@ -1,6 +1,7 @@
 package com.github.nitsebrod.CoolZoo.animal.controllers.impl;
 
-import com.github.nitsebrod.CoolZoo.animal.api.RequestAnimalDto;
+import com.github.nitsebrod.CoolZoo.animal.api.AnimalDto;
+import com.github.nitsebrod.CoolZoo.animal.api.CreateAnimalDto;
 import com.github.nitsebrod.CoolZoo.animal.api.ResponseAnimalDto;
 import com.github.nitsebrod.CoolZoo.animal.controllers.AnimalController;
 import com.github.nitsebrod.CoolZoo.animal.services.impl.AnimalServiceImpl;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/animals")
 public class AnimalControllerImpl implements AnimalController {
-
 
     private final AnimalServiceImpl animalServiceImpl;
 
@@ -36,8 +36,8 @@ public class AnimalControllerImpl implements AnimalController {
         return animalServiceImpl.getAllAnimals(pageable);
     }
 
-    @PostMapping("/")
-    public ResponseAnimalDto saveNewAnimal(@RequestBody RequestAnimalDto animal) {
+    @PostMapping()
+    public AnimalDto saveNewAnimal(@RequestBody CreateAnimalDto animal) {
         return animalServiceImpl.saveNewAnimal(animal);
     }
 
@@ -47,8 +47,8 @@ public class AnimalControllerImpl implements AnimalController {
     }
 
     @PutMapping("/{animalId}")
-    public ResponseAnimalDto updateAnimal(@PathVariable RequestAnimalDto animal) {
+    public ResponseAnimalDto updateAnimal(@PathVariable CreateAnimalDto animal) {
         return animalServiceImpl.saveNewAnimal(animal);
     }
-
 }
+

@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @Builder
-public class RequestAnimalDto {
+public class CreateAnimalDto {
     private String name;
     private String description;
     private Integer age;
