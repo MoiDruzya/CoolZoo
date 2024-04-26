@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 public interface AnimalController {
 
-    @ApiOperation(value = "Получение животного по типу")
+    @ApiOperation(value = "Получение животного по полу")
 //    @GetMapping(value = "/{animal_type}")
     public ResponseAnimalDto getAnimalByGender(String gender);
 
@@ -17,19 +17,19 @@ public interface AnimalController {
     @GetMapping(value = "/{animal_type}")
     public ResponseAnimalDto getAnimalByType(String type);
 
-    @ApiOperation(value = "Получение животного по типу")
+    @ApiOperation(value = "Получение всех животных")
 //    @GetMapping(value = "/{animal_type}")
     public Page<ResponseAnimalDto> getAllAnimals(Pageable pageable);
 
-    @ApiOperation(value = "Получение животного по типу")
+    @ApiOperation(value = "Добавление нового животного")
 //    @GetMapping(value = "/{animal_type}")
     public ResponseAnimalDto saveNewAnimal(RequestAnimalDto animal);
 
-    @ApiOperation(value = "Получение животного по типу")
+    @ApiOperation(value = "Удаление животного по Id")
 //    @GetMapping(value = "/{animal_type}")
     public void deleteAnimalById(Long animalId);
 
-    @ApiOperation(value = "Получение животного по типу")
+    @ApiOperation(value = "Обновление данных животного")
 //    @GetMapping(value = "/{animal_type}")
     public ResponseAnimalDto updateAnimal(RequestAnimalDto animal);
 }
