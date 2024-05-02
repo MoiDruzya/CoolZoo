@@ -30,23 +30,23 @@ public class AnimalServiceImpl {
 
     public ResponseAnimalDto getAnimalByType(String type) {
         Animal animal = animalRepository.findAnimalByType(type);
-        return animalMapper.entityToDto(animal);
+        return animalMapper.entityToResponseDto(animal);
     }
 
     public Page<ResponseAnimalDto> getAllAnimals(Pageable pageable) {
-        List<Animal> pageableAnimals = animalRepository.findAll();
-        List<ResponseAnimalDto> animalList = pageableAnimals
+        List<Animal> animalList = animalRepository.findAll();
+        List<ResponseAnimalDto> listAnimalDto = animalList
                 .stream()
-                .map(animalMapper::entityToDto)
+                .map(animalMapper::entityToResponseDto)
                 .collect(Collectors.toList());
-        return new PageImpl<>(animalList, pageable, 2);
+        return new PageImpl<>(listAnimalDto, pageable, 2);
     }
 
     public ResponseAnimalDto getAnimalByGender(String gender) {
         //todo заменить на вызов из репозитория
         Animal animal = animalRepository.findAnimalByGender(gender);
-        return animalMapper.entityToDto(animal);
-
+        return animalMapper.entityToResponseDto(animal);
+    }
 
         public AnimalDto saveNewAnimal (CreateAnimalDto createAnimalDto){
             Animal entity = animalMapper.createDtoToEntity(createAnimalDto);
@@ -54,21 +54,23 @@ public class AnimalServiceImpl {
                     animalRepository.save(entity));
         }
 
-        public void deleteAnimalById (Long animalId){
-            animalRepository.deleteById(animalId);
-        }
+    public void deleteAnimalById(Long animalId) {
+        animalRepository.deleteById(animalId);
+    }
 
-        //todo потом возвращать Optional<AnimalDto> и посмотреть че кого
 
-        public ResponseAnimalDto updateAnimalById (Animal animal) throws IllegalArgumentException {
-            Optional<Animal> animalOpt = animalRepository.findById(animal.getId());
-            ResponseAnimalDto updatedResponseAnimalDto;
-            if (animalOpt.isEmpty()) {
-                throw new IllegalArgumentException("huyno");
-            } else {
-                Animal entityToSafe = animalRepository.save(animal);
-                updatedResponseAnimalDto = animalMapper.entityToDto(entityToSafe);
-            }
-            return updatedResponseAnimalDto;
+    //todo потом возвращать Optional<AnimalDto> и посмотреть че кого
 
-        }
+//    public ResponseAnimalDto updateAnimalById(Animal animal) throws IllegalArgumentException {
+//        Optional<Animal> animalOpt = animalRepository.findById(animal.getId());
+//        ResponseAnimalDto updatedResponseAnimalDto;
+//        if (animalOpt.isEmpty()) {
+//            throw new IllegalArgumentException("huyno");
+//        } else {
+//            Animal entityToSafe = animalRepository.save(animal);
+//            updatedResponseAnimalDto = animalMapper.entityToDto(entityToSafe);
+//        }
+//        return updatedResponseAnimalDto;
+//
+//    }
+}

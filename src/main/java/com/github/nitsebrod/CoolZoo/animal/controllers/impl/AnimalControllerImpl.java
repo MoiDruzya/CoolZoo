@@ -32,7 +32,7 @@ public class AnimalControllerImpl implements AnimalController {
     }
 
     @GetMapping("/all")
-    public Page<ResponseAnimalDto> getAllAnimals(@PathVariable Pageable pageable) {
+    public Page<ResponseAnimalDto> getAllAnimals( Pageable pageable) {
         return animalServiceImpl.getAllAnimals(pageable);
     }
 
@@ -46,9 +46,9 @@ public class AnimalControllerImpl implements AnimalController {
         animalServiceImpl.deleteAnimalById(animalId);
     }
 
-    @PutMapping("/{animalId}")
-    public ResponseAnimalDto updateAnimal(@PathVariable CreateAnimalDto animal) {
-        return animalServiceImpl.saveNewAnimal(animal);
-    }
+//    @PutMapping("/{animalId}")
+//    public ResponseAnimalDto updateAnimal(@PathVariable CreateAnimalDto animal) {
+//        return animalServiceImpl.saveNewAnimal(animal);
+//    }
 }
 
